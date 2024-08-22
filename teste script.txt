@@ -1,0 +1,42 @@
+abaixo estara a library da nossa UI
+
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/7yhx/kwargs_Ui_Library/main/source.lua"))()
+
+local UI = Lib:Create{
+    Theme = "Dark", -- or any other theme
+    Size = UDim2.new(0, 555, 0, 400) -- default
+ }
+ 
+ local Main = UI:Tab{
+    Name = "inicio"
+ }
+ 
+ local Divider = Main:Divider{
+    Name = "inicio shit"
+ }
+ 
+ local QuitDivider = Main:Divider{
+    Name = "sair"
+ }
+
+ -- Script de Auto Farm para Tangled Web no Roblox
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Função para atacar inimigos
+local function atacarInimigos()
+    for _, inimigo in pairs(game.Workspace.Inimigos:GetChildren()) do
+        if inimigo:FindFirstChild("Humanoid") and inimigo.Humanoid.Health > 0 then
+            character.HumanoidRootPart.CFrame = inimigo.HumanoidRootPart.CFrame
+            wait(0.5)
+            game:GetService("VirtualUser"):CaptureController()
+            game:GetService("VirtualUser"):Button1Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end
+    end
+end
+
+-- Loop para auto farm
+while true do
+    atacarInimigos()
+    wait(1)
+end
